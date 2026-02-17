@@ -1,0 +1,37 @@
+{
+  "name": "playwright_e2e_framework",
+  "version": "1.0.0",
+  "description": "Playwright Framework with Typescript, Allure Report, Faker, CSV and Excel Data Handling",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test tests/ui",
+    "test:api": "playwright test tests/api",
+    "test:integration": "playwright test tests/integration",
+    "report": "playwright show-report"
+  },
+  "keywords": [],
+  "author": "Leejanand B",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "browserstack-node-sdk": "^1.32.7",
+    "playwright-zephyr": "^1.0.3",
+    "dotenv": "^16.4.0"
+    
+  },
+  "dependencies": {
+    "@faker-js/faker": "^10.3.0",
+    "csv-parse": "^6.1.0",
+    "xlsx": "^0.18.5",
+    "@types/node": "^25.2.3",
+    "allure-playwright": "^3.4.5",
+    "ajv": "^8.12.0",
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "prettier": "^2.8.8",
+    "winston": "^3.8.2"
+  }
+}
