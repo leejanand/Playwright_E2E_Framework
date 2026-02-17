@@ -10,24 +10,18 @@
  * 4) Verify if the product is displayed in the search results
  */
 
-import { test, expect } from '@playwright/test';
-import { HomePage } from '../../pages/HomePage';
-import { SearchResultsPage } from '../../pages/SearchResultsPage';
+import { expect } from '@playwright/test';
+import { test } from '@fixtures/BaseTest';
 import { TestConfig } from '../../test.config';
 
 // Declare reusable variables
 let config: TestConfig;
-let homePage: HomePage;
-let searchResultsPage: SearchResultsPage;
 
 // Playwright hook - runs before each test
 test.beforeEach(async ({ page }) => {
   config = new TestConfig(); // Load configuration values like URL and product name
   await page.goto(config.appUrl); // Step 1: Navigate to the application
 
-  // Initialize page objects
-  homePage = new HomePage(page);
-  searchResultsPage = new SearchResultsPage(page);
 });
 
 // Playwright hook - runs after each test (optional cleanup)
@@ -35,7 +29,7 @@ test.afterEach(async ({ page }) => {
   await page.close(); // Closes the browser tab after test
 });
 
-test('Product search test @master @regression', async () => {
+test('Product search test @master @regression', async ({page, homePage, searchResultsPage}) => {
   const productName = config.productName;
 
   // Step 2 & 3: Enter product name and click Search

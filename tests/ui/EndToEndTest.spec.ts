@@ -13,21 +13,12 @@
  * 6) Attempt checkout (disabled since feature isn't available on demo site)
  */
 
-import { test, expect, Page } from '@playwright/test';
-import { RegistrationPage } from '../../../pages/AllPages/RegistrationPage';
-import { HomePage } from '../../pages/HomePage';
-import { RandomDataUtil } from '../../utils/randomDataGenerator';
+import { expect, Page } from '@playwright/test';
+import { test } from '@fixtures/BaseTest';
 import { TestConfig } from '../../test.config';
-import { LogoutPage } from '../../pages/LogoutPage';
-import { LoginPage } from '../../pages/LoginPage';
-import { MyAccountPage } from '../../pages/MyAccountPage';
-import { SearchResultsPage } from '../../pages/SearchResultsPage';
-import { ProductPage } from '../../pages/ProductPage';
-import { ShoppingCartPage } from '../../pages/ShoppingCartPage';
-import { CheckoutPage } from '../../pages/CheckoutPage';
 
 // This is the main test block that runs the entire flow
-test('execute end-to-end test flow @end-to-end', async ({ page }) => {
+test('execute end-to-end test flow @end-to-end', async ({ page}) => {
     const config = new TestConfig();
 
     // Navigate to the application's home page

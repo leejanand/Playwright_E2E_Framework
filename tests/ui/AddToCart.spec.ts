@@ -14,33 +14,25 @@
  * 8. Verify the success message
  */
 
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { TestConfig } from '../../test.config';
-import { HomePage } from '../../pages/HomePage';
-import { SearchResultsPage } from '../../pages/SearchResultsPage';
-import { ProductPage } from '../../pages/ProductPage';
+import {test} from '@fixtures/BaseTest';
 
 // Shared instances
 let config: TestConfig;
-let homePage: HomePage;
-let searchResultsPage: SearchResultsPage;
-let productPage: ProductPage;
+
 
 test.beforeEach(async ({ page }) => {
   config = new TestConfig(); // Load test configuration
   await page.goto(config.appUrl); // Step 1: Open application URL
 
-  // Initialize page objects
-  homePage = new HomePage(page);
-  searchResultsPage = new SearchResultsPage(page);
-  productPage=new ProductPage(page);
 });
 
 test.afterEach(async ({ page }) => {
   await page.close(); // Optional cleanup
 });
 
-test('Add product to cart test @master @regression', async ({ page }) => {
+test('Add product to cart test @master @regression', async ({ page, homePage, searchResultsPage, productPage }) => {
   // Step 2: Enter product name in search box
   await homePage.enterProductName(config.productName);
 

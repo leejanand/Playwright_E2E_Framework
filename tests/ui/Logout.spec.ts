@@ -13,29 +13,19 @@
  * 7) Verify user is redirected to Home Page
  */
 
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { TestConfig } from '../../test.config';
-import { HomePage } from '../../pages/HomePage';
-import { LoginPage } from '../../pages/LoginPage';
-import { MyAccountPage } from '../../pages/MyAccountPage';
-import { LogoutPage } from '../../pages/LogoutPage';
+import { test } from '@fixtures/BaseTest';
+
 
 // Declare shared variables
 let config: TestConfig;
-let homePage: HomePage;
-let loginPage: LoginPage;
-let myAccountPage: MyAccountPage;
-let logoutPage: LogoutPage;
+
 
 // Setup before each test
 test.beforeEach(async ({ page }) => {
   config = new TestConfig(); // Load test config
   await page.goto(config.appUrl); // Step 1: Navigate to app URL
-
-  // Initialize page objects
-  homePage = new HomePage(page);
-  loginPage = new LoginPage(page);
-  myAccountPage = new MyAccountPage(page);
   //logoutPage = new LogoutPage(page);
 });
 
@@ -44,7 +34,7 @@ test.afterEach(async ({ page }) => {
   await page.close(); // Close the browser tab (helps keep tests clean)
 });
 
-test('User logout test @master @regression', async () => {
+test('User logout test @master @regression', async ({page, homePage, loginPage, myAccountPage, logoutPage}) => {
   // Step 2: Navigate to Login page
   await homePage.clickMyAccount();
   await homePage.clickLogin();

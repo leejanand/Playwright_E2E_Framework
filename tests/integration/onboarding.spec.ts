@@ -1,4 +1,4 @@
-import { test } from '../../src/fixtures/AppFixture';
+import { test } from '../../src/fixtures/BaseTest';
 import { UserFactory } from '../../src/utils/testDataFactory';
 
 test('onboarding flow', async ({ userService, loginPage }) => {

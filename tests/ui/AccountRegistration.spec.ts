@@ -11,21 +11,17 @@
  * 5) Validate the confirmation message
  */
 
-import { test, expect } from '@playwright/test';
-import { HomePage } from '../../pages/HomePage';
-import { RegistrationPage } from '../../pages/RegistrationPage';
-import { RandomDataUtil } from '../../utils/randomDataGenerator';
+import {  expect } from '@playwright/test';
+import { test } from '@fixtures/BaseTest';
 import { TestConfig } from '../../test.config';
+import { RandomDataUtil } from '@util/randomDataGenerator';
 
-let homePage: HomePage;
-let registrationPage: RegistrationPage;
+
 let config: TestConfig;
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, homePage, registrationPage }) => {
     config = new TestConfig();
     await page.goto(config.appUrl); //Navigate to application URL 
-    homePage = new HomePage(page);
-    registrationPage = new RegistrationPage(page);
 
 })
 
@@ -38,7 +34,7 @@ test.afterEach(async ({ page }) => {
 })
 
 
-test('User registration test @master @sanity @regression', async () => {
+test('User registration test @master @sanity @regression', async ({ homePage, registrationPage }) => {
 
     //Go to 'My Account' and click 'Register'
 

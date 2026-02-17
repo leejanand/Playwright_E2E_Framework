@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { LogoutPage } from '../auth/LogoutPage'; // Import LogoutPage if needed
+import { LogoutPage } from './LogoutPage'; // Import LogoutPage if needed
 
 export class MyAccountPage {
     private readonly page: Page;

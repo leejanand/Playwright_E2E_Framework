@@ -1,5 +1,5 @@
 import { Page, Locator } from '@playwright/test';
-import { HomePage } from '../AllPages/HomePage';
+import { HomePage } from './HomePage';
 
 export class LogoutPage {
     private readonly page: Page;

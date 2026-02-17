@@ -10,26 +10,18 @@
  * 4) Verify successful login by checking 'My Account' page presence
  */
 
-import { test, expect } from '@playwright/test';
-import { HomePage } from '../../pages/HomePage';
-import { LoginPage } from '../../pages/LoginPage';
-import { MyAccountPage } from '../../pages/MyAccountPage';
+import {  expect } from '@playwright/test';
+import {test} from '@fixtures/BaseTest';
 import { TestConfig } from '../../test.config';
 
 let config: TestConfig;
-let homePage: HomePage;
-let loginPage: LoginPage;
-let myAccountPage: MyAccountPage;
+
 
 // This hook runs before each test
 test.beforeEach(async ({ page }) => {
   config = new TestConfig(); // Load config (URL, credentials)
   await page.goto(config.appUrl); // Navigate to base URL
 
-  // Initialize page objects
-  homePage = new HomePage(page);
-  loginPage = new LoginPage(page);
-  myAccountPage = new MyAccountPage(page);
 });
 
 // Optional cleanup after each test
@@ -38,7 +30,7 @@ test.afterEach(async ({ page }) => {
 });
 
 
-test('User login test @master @sanity @regression',async()=>{
+test('User login test @master @sanity @regression',async({page, homePage, loginPage, myAccountPage})=>{
 
     //Navigate to Login page via Home page
 
