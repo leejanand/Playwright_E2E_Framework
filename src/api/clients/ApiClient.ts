@@ -6,7 +6,7 @@ export class ApiClient {
   protected headers(token?: string) {
     return {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     };
   }
 }

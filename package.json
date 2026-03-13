@@ -1,6 +1,7 @@
 {
   "name": "playwright_e2e_framework",
   "version": "1.0.0",
+  "type": "module",
   "description": "Playwright Framework with Typescript, Allure Report, Faker, CSV and Excel Data Handling",
   "main": "index.js",
   "scripts": {
@@ -15,30 +16,39 @@
     "test:datadriven": "playwright test --grep @datadriven",
     "test:master:headed": "playwright test --grep @master --headed",
     "test:end-to-end": "playwright test --grep @end-to-end --headed",
-    "test:sanity:debug": "playwright test --grep @sanity --debug"
+    "test:sanity:debug": "playwright test --grep @sanity --debug",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "Leejanand B",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.58.2",
+    "@types/luxon": "^3.7.1",
     "browserstack-node-sdk": "^1.32.7",
+    "dotenv": "^16.4.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-playwright": "^2.9.0",
+    "globals": "^17.4.0",
+    "jiti": "^2.6.1",
     "playwright-zephyr": "^1.0.3",
-    "dotenv": "^16.4.0"
-    
+    "prettier": "^3.8.1",
+    "typescript-eslint": "^8.57.0"
   },
   "dependencies": {
     "@faker-js/faker": "^10.3.0",
-    "csv-parse": "^6.1.0",
-    "xlsx": "^0.18.5",
     "@types/node": "^25.2.3",
-    "allure-playwright": "^3.4.5",
     "ajv": "^8.12.0",
-    "typescript": "^5.2.2",
-    "ts-node": "^10.9.1",
-    "eslint": "^8.45.0",
+    "allure-playwright": "^3.4.5",
+    "csv-parse": "^6.1.0",
     "eslint-config-prettier": "^8.8.0",
-    "prettier": "^2.8.8",
-    "winston": "^3.8.2"
+    "luxon": "^3.7.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2",
+    "winston": "^3.8.2",
+    "xlsx": "^0.18.5"
   }
 }

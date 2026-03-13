@@ -1,8 +1,8 @@
 /**
  * Test Case: Product Search
- * 
+ *
  * Tags: @master @regression
- * 
+ *
  * Steps:
  * 1) Navigate to the application URL
  * 2) Enter the product name in the search field
@@ -21,7 +21,6 @@ let config: TestConfig;
 test.beforeEach(async ({ page }) => {
   config = new TestConfig(); // Load configuration values like URL and product name
   await page.goto(config.appUrl); // Step 1: Navigate to the application
-
 });
 
 // Playwright hook - runs after each test (optional cleanup)
@@ -29,7 +28,10 @@ test.afterEach(async ({ page }) => {
   await page.close(); // Closes the browser tab after test
 });
 
-test('Product search test @master @regression', async ({page, homePage, searchResultsPage}) => {
+test('Product search test @master @regression', async ({
+  homePage,
+  searchResultsPage,
+}) => {
   const productName = config.productName;
 
   // Step 2 & 3: Enter product name and click Search

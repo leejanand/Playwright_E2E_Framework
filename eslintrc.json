@@ -1,0 +1,17 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:playwright/recommended"
+  ],
+  "plugins": ["playwright"],
+  "rules": {
+    "no-unused-vars": "error",
+    "eqeqeq": "error",
+    "prefer-const": "warn",
+    "no-console": "warn",
+    "playwright/no-wait-for-timeout": "warn"
+  }
+}

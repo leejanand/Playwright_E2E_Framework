@@ -12,7 +12,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  timeout: 30 * 1000,   //30000 ms(30 secs)
+  timeout: 30 * 1000, //30000 ms(30 secs)
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -20,7 +20,7 @@ export default defineConfig({
   //forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   //retries: process.env.CI ? 2 : 0,
-  retries:1,
+  retries: 1,
   /* Opt out of parallel tests on CI. */
   //workers: process.env.CI ? 1 : undefined,
   workers: 1,
@@ -29,13 +29,13 @@ export default defineConfig({
     ['html'],
     ['allure-playwright'],
     //['dot'],
-    ['list']
+    ['list'],
   ],
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-     baseURL: 'https://restful-booker.herokuapp.com',
+    baseURL: 'https://restful-booker.herokuapp.com',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -54,7 +54,7 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-   /*  {
+    /*  {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },

@@ -1,8 +1,8 @@
 /**
  * Test Case: User Logout
- * 
+ *
  * Tags: @master @regression
- * 
+ *
  * Steps:
  * 1) Navigate to the application URL
  * 2) Go to Login page from Home page
@@ -17,10 +17,8 @@ import { expect } from '@playwright/test';
 import { TestConfig } from '../../test.config';
 import { test } from '@fixtures/BaseTest';
 
-
 // Declare shared variables
 let config: TestConfig;
-
 
 // Setup before each test
 test.beforeEach(async ({ page }) => {
@@ -34,7 +32,12 @@ test.afterEach(async ({ page }) => {
   await page.close(); // Close the browser tab (helps keep tests clean)
 });
 
-test('User logout test @master @regression', async ({page, homePage, loginPage, myAccountPage, logoutPage}) => {
+test('User logout test @master @regression', async ({
+  homePage,
+  loginPage,
+  myAccountPage,
+  logoutPage,
+}) => {
   // Step 2: Navigate to Login page
   await homePage.clickMyAccount();
   await homePage.clickLogin();

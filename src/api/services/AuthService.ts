@@ -7,8 +7,8 @@ export class AuthService {
     const res = await this.request.post('/api/login', {
       data: {
         username: process.env.USERNAME,
-        password: process.env.PASSWORD
-      }
+        password: process.env.PASSWORD,
+      },
     });
 
     const body = await res.json();

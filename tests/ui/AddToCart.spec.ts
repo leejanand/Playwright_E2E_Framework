@@ -1,8 +1,8 @@
 /**
  * Test Case: Add Product to Cart
- * 
+ *
  * Tags: @master @regression
- * 
+ *
  * Steps:
  * 1. Navigate to application URL
  * 2. Enter an existing product name in the search box
@@ -16,23 +16,26 @@
 
 import { expect } from '@playwright/test';
 import { TestConfig } from '../../test.config';
-import {test} from '@fixtures/BaseTest';
+import { test } from '@fixtures/BaseTest';
 
 // Shared instances
 let config: TestConfig;
 
-
 test.beforeEach(async ({ page }) => {
   config = new TestConfig(); // Load test configuration
   await page.goto(config.appUrl); // Step 1: Open application URL
-
 });
 
 test.afterEach(async ({ page }) => {
   await page.close(); // Optional cleanup
 });
 
-test('Add product to cart test @master @regression', async ({ page, homePage, searchResultsPage, productPage }) => {
+test('Add product to cart test @master @regression', async ({
+  page,
+  homePage,
+  searchResultsPage,
+  productPage,
+}) => {
   // Step 2: Enter product name in search box
   await homePage.enterProductName(config.productName);
 
@@ -51,7 +54,7 @@ test('Add product to cart test @master @regression', async ({ page, homePage, se
     //productPage = await searchResultsPage.selectProduct(productName);
     await searchResultsPage.selectProduct(productName);
     await productPage.setQuantity(config.productQuantity); // Set quantity
-    await productPage.addToCart();                         // Add to cart
+    await productPage.addToCart(); // Add to cart
 
     // Step 8: Assert success message is visible
     expect(await productPage.isConfirmationMessageVisible()).toBeTruthy();
