@@ -8,6 +8,9 @@
 */
 
 import { test, expect } from '@playwright/test';
+import dotenv from 'dotenv';
+dotenv.config();
+import {Buffer} from 'buffer';
 
 //1) No Auth (Public API)
 
@@ -22,11 +25,16 @@ test('Public API - No Auth', async ({ request }) => {
 
 // 2. Basic Auth
 test('Basic Auth - HTTPBin', async ({ request }) => {
-  const response = await request.get(
-    'https://httpbin.org/basic-auth/user/pass',
+
+  const username = process.env.BASIC_AUTH_USERNAME;
+  const password = process.env.BASIC_AUTH_PASSWORD;
+
+  const base64Credentials = Buffer.from(`${username}:${password}`).toString('base64');
+
+  const response = await request.get('https://postman-echo.com/basic-auth',
     {
       headers: {
-        Authorization: 'Basic ' + Buffer.from('user:pass').toString('base64'),
+        Authorization: `Basic ${base64Credentials}`,
       },
     },
   );
@@ -38,7 +46,7 @@ test('Basic Auth - HTTPBin', async ({ request }) => {
 // 3. Bearer Token Auth (Get github user repositories)
 
 test('Verify Bearer Token Authentication', async ({ request }) => {
-  const bearerToken = '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';
+  const bearerToken = process.env.GITHUB_TOKEN; // Replace with your actual token
 
   const response = await request.get('https://api.github.com/user/repos', {
     headers: {
@@ -48,13 +56,16 @@ test('Verify Bearer Token Authentication', async ({ request }) => {
 
   expect(response.status()).toBe(200);
   const repos = await response.json();
-  console.log(repos);
+  for (const repo of repos) {
+    console.log(`Repository Name: ${repo.name}`);
+  }
+
 });
 
 // 3.1. Bearer Token Auth (Get github user info)
 
 test('Bearer Token Auth', async ({ request }) => {
-  const token = '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'; // Replace with a real token
+  const token = process.env.GITHUB_TOKEN; // Replace with a real token
   const response = await request.get('https://api.github.com/user', {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -68,35 +79,16 @@ test('Bearer Token Auth', async ({ request }) => {
 
 // 4. API Key Authentication
 // https://openweathermap.org/current
-test('Verify API Key Authentication', async ({ request }) => {
-  const response = await request.get(
-    'https://api.openweathermap.org/data/2.5/weather',
-    {
-      params: {
-        q: 'Delhi',
-        appid: 'fe9c5cddb7e01d747b4611c3fc9eaf2c', // <-- hardcoded API key
-      },
-    },
-  );
-
-  expect(response.status()).toBe(200);
-  const weather = await response.json();
-  console.log(weather);
-});
-
-// 4.1 API Key Auth
-// Ref Link: https://www.weatherapi.com/docs/
-// Returns current weather of city
-//You need to signup and then you can find your API key under your account.
-//https://www.weatherapi.com/signup.aspx
-
 //API Key (14 days trial)
 
 test('API Key Auth - Header', async ({ request }) => {
-  const response = await request.get(
-    'https://api.weatherapi.com/v1/current.json',
+
+  const apiKey = process.env.OPENWEATHER_API_KEY; // Replace with your actual API key
+  const city = 'London';
+
+  const response = await request.get('https://api.openweathermap.org/data/2.5/weather',
     {
-      params: { q: 'India', key: '59f38ebe55d5436ca0552856250606' },
+      params: { q: city, appid: apiKey!},
     },
   );
   expect(response.status()).toBe(200);
