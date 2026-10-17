@@ -1,8 +1,36 @@
 
-# Playwright
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
+
+# Playwright test reports
+playwright-report/
+test-results/
+blob-report/
+
+# Playwright traces and generated files
+*.zip
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Coverage
+coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE settings
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# TypeScript build output
+dist/
